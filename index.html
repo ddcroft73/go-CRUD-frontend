@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CRUD App</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+</head>
+<body>
+
+    <div id="edit-modal" class="modal">
+        <div id="mod-container">
+            <div class="modal-content">
+                <div id="close-btn">
+                   <span class="close">&times;</span>
+                </div>
+                <h2>Edit User</h2>
+                <form id="edit-form">
+                    <input type="hidden" id="edit-id">
+                    <label for="edit-username">Username:</label><br>
+                    <input type="text" id="edit-username" required><br>
+                    <label for="edit-email">Email:</label><br>
+                    <input type="email" id="edit-email" required><br>
+                    <label for="edit-fullname">Full Name:</label><br>
+                    <input type="text" id="edit-fullname" required><br>
+                    <label for="edit-message">Message:</label><br>
+                    <textarea id="edit-message" required></textarea><br>
+                    <button type="button" onclick="editUser(event, document.getElementById('edit-id').value)">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-container">
+        <div id="title">
+           <h1>Simple CRUD DEMO in Go</h1>
+
+        <hr />
+        </div>
+
+
+        <div id="title-two">
+           <h2>Create User</h2>
+        </div>
+       
+        <div id="content-outer">
+            <div id="content">
+                This is a simple front end built to work with a Go backend. Its simple as can be because I loathe frontend work and I am terrible at anything 
+                to do with design. It's functional. it's practical and it's boring.
+            </div>
+        </div>
+        <div id="form-container">
+            <form id="create-form">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" required><br>
+                
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br>
+                
+                <label for="password">Fullname:</label><br>
+                <input type="text" id="fullname" name="fullname" required><br>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message"></textarea>
+                
+                <button id="create"  type="button" onclick="createUser(event)">Create</button>
+            </form>
+        </div>
+
+        <div id="users-container">
+            <h2>Users</h2>
+            <hr />
+            <table id="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Fullname</th>
+                        <th>Message</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be dynamically populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+       
+        <div id="actions">
+            <button id="delete-all-btn" onclick="deleteAllUsers()">Delete All</button>
+        </div>    
+    </div>
+
+    <script src="/static/javascript/script.js"></script>
+
+    
+</body>
+</html>
