@@ -134,25 +134,31 @@ function editUser(event, userId) {
 
 
 const deleteUser = (userID) => {
-    fetch(`http://localhost:8080/delete/${userID}`, {
-        method: 'POST'
-      })
-        .then(response => {
-          if (response.ok) {
-            // User deleted successfully
-            getUsers(); // Refresh the user list
-          } else {
-            // Handle the error case
-            console.error('Error deleting user:', response.statusText);
-          }
+
+    if (confirm("Are you sure you want to delete this record?")) {
+        fetch(`http://localhost:8080/delete/${userID}`, {
+            method: 'POST'
         })
-        .catch(error => console.error('Error deleting user:', error));
+            .then(response => {
+            if (response.ok) {
+                // User deleted successfully
+                getUsers(); // Refresh the user list
+            } else {
+                // Handle the error case
+                console.error('Error deleting user:', response.statusText);
+            }
+            })
+            .catch(error => console.error('Error deleting user:', error));
+    }
 }
 
 const deleteAllUsers = () => {
-    fetch(`http://localhost:8080/delete-all`, {
+
+    if (confirm("This action will delete all records in the database. \n Continue?")) {
+        // User clicked "OK", perform the action
+        fetch(`http://localhost:8080/delete-all`, {
         method: 'POST'
-      })
+        })
         .then(response => {
           if (response.ok) {
             // User deleted successfully
@@ -163,5 +169,10 @@ const deleteAllUsers = () => {
           }
         })
         .catch(error => console.error('Error deleting user:', error));
+      } else {
+        // User clicked "Cancel", do nothing or handle accordingly
+        console.log("Deletion canceled");
+      }
+    
 }
 
