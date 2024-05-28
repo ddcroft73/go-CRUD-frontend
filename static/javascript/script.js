@@ -6,13 +6,14 @@ window.onload = function() {
 // Function to create a new user
 function createUser(event) {
     event.preventDefault(); // Prevent form submission
-
+    
     // Get form values
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const fullname = document.getElementById('fullname').value;
     const message = document.getElementById('message').value;
-
+    
+    // don't allow any empty records.
     // Send POST request to create user endpoint
     fetch('http://localhost:8080/', {
         method: 'POST',
@@ -32,7 +33,6 @@ function createUser(event) {
 )}
 
 function getUsers() {
-    // Send GET request to retrieve users
     fetch('http://localhost:8080/', {
         method: 'GET',
         headers: {
@@ -43,7 +43,7 @@ function getUsers() {
         .then(data => {
             const tableBody = document.querySelector('#users-table tbody');
             tableBody.innerHTML = ''; // Clear existing table rows
-
+           
             // Iterate over the retrieved users and create table rows
             data.forEach(user => {
                 const row = document.createElement('tr');
@@ -55,7 +55,8 @@ function getUsers() {
                     <td>${user.message}</td>
                     <td>
                        <div id="btn-container">
-                          <button id="edit-btn" class="edit-btn" data-user='${JSON.stringify(user)}'>Edit</button>
+                           
+                           <button id="edit-btn" class="edit-btn" data-user='${JSON.stringify(user).replace(/'/g, "&#39;")}'>Edit</button>
                            <button id="delete-btn" onclick="deleteUser(${user.id})">Delete</button>
                        </div>
                     </td>
@@ -63,7 +64,7 @@ function getUsers() {
                 tableBody.appendChild(row);
             });
         })
-        .catch(error => console.error('Error retrieving users:', error));
+        .catch(error => alert('The backend is unreachable. Make sure the server is running.', error));
 }
 
 
@@ -82,10 +83,14 @@ function openEditModal(user) {
   editModal.style.display = 'block';
 }
 
+
+
 // Event delegation for edit buttons
 document.addEventListener('click', function(event) {
   if (event.target.classList.contains('edit-btn')) {
-    const user = JSON.parse(event.target.getAttribute('data-user'));
+    const userData = event.target.getAttribute('data-user');
+    // Issues with apostraphes.... this shit drove me crazy. Thank you AI!!
+    const user = JSON.parse(userData.replace(/&#39;/g, "'"));
     openEditModal(user);
   }
 });
@@ -99,7 +104,7 @@ closeBtn.addEventListener('click', function() {
 function editUser(event, userId) {
     event.preventDefault();
   
-    const id = userId //document.getElementById('edit-id').value;
+    const id = userId 
     const username = document.getElementById('edit-username').value;
     const email = document.getElementById('edit-email').value;
     const fullname = document.getElementById('edit-fullname').value;
@@ -169,10 +174,7 @@ const deleteAllUsers = () => {
           }
         })
         .catch(error => console.error('Error deleting user:', error));
-      } else {
-        // User clicked "Cancel", do nothing or handle accordingly
-        console.log("Deletion canceled");
-      }
+      } 
     
 }
 

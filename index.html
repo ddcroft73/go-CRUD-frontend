@@ -59,9 +59,9 @@
                 <input type="text" id="fullname" name="fullname" required><br>
                 
                 <label for="message">Message:</label>
-                <textarea id="message" name="message"></textarea>
+                <textarea id="message" name="message" required></textarea>
                 
-                <button id="create"  type="button" onclick="createUser(event)">Create</button>
+                <button id="create"  type="button" onclick="createUser(event)">Create User</button>
             </form>
         </div>
 
@@ -71,12 +71,12 @@
             <table id="users-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Fullname</th>
-                        <th>Message</th>
-                        <th>Actions</th>
+                        <th>ID:</th>
+                        <th>Username:</th>
+                        <th>Email:</th>
+                        <th>Fullname:</th>
+                        <th>Message:</th>
+                        <th>Actions:</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,7 +87,7 @@
 
        
         <div id="actions">
-            <button id="delete-all-btn" onclick="deleteAllUsers()">Delete All</button>
+            <button id="delete-all-btn" onclick="deleteAllUsers()">Delete All Users</button>
         </div>    
     </div>
 

@@ -16,6 +16,14 @@ body {
 }
 #btn-container {
     display: flex;
+    gap: 3px;
+}
+input {
+    background-color: gray;
+}
+
+textarea {
+    background-color: gray;
 }
 
 #title {
@@ -116,6 +124,8 @@ hr {
 button {
     height: 35px;
     border-radius: 8px;
+
+    background-color: gray;
 }
 
 #create {
@@ -174,6 +184,7 @@ table {
 
     border-radius: 8px;
     border: 1px solid black;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 2);
   }
  
   
@@ -204,6 +215,7 @@ table {
     width: 100%;
     height: 25px;
     border-radius: 8px;
+    background-color: gray;
   }
 
 
@@ -212,12 +224,14 @@ table {
     width: 100%;
     height: 25px;
     border-radius: 8px;
+    background-color: gray;
   }
   #edit-fullname {
     margin-bottom: 10px;
     width: 100%;
     height: 25px;
     border-radius: 8px;
+    background-color: gray;
   }
   #edit-message {
     margin-bottom: 10px;
